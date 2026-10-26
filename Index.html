@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Doll, Sakshi ❤️ | Meri Jaan, Mere Dil Ka Tukda</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose-deep: #881337;
+      --rose-glow: #fb7185;
+      --gold-soft: #fde68a;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 10%, #2e0616 0%, #16030b 45%, #0c0206 100%);
+      color: #fff1f2;
+      overflow-x: hidden;
+    }
+    .font-serif-luxury {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .font-script {
+      font-family: 'Sacramento', cursive;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(251, 113, 133, 0.22);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(244, 63, 94, 0.12);
+    }
+    .glass-card-gold {
+      background: linear-gradient(135deg, rgba(251, 113, 133, 0.12) 0%, rgba(253, 230, 138, 0.06) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(253, 230, 138, 0.3);
+      box-shadow: 0 20px 50px -12px rgba(244, 63, 94, 0.22);
+    }
+    .polaroid-frame {
+      background: linear-gradient(180deg, #fff9fa 0%, #ffe4e8 100%);
+      color: #4c0519;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.65), 0 0 20px rgba(251, 113, 133, 0.2);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .polaroid-frame:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
+      box-shadow: 0 28px 45px -10px rgba(244, 63, 94, 0.45);
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.7) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-105vh) scale(1.35) rotate(20deg);
+        opacity: 0;
+      }
+    }
+    .floating-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUp 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(244, 63, 94, 0.4), 0 0 45px rgba(244, 63, 94, 0.15);
+      }
+      50% {
+        box-shadow: 0 0 35px rgba(244, 63, 94, 0.75), 0 0 70px rgba(253, 230, 138, 0.35);
+      }
+    }
+    .glow-btn {
+      animation: pulseGlow 2.8s infinite;
+    }
+    @keyframes breatheHalo {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.45;
+      }
+      50% {
+        transform: scale(1.42);
+        opacity: 0.9;
+      }
+    }
+    .breathe-circle {
+      animation: breatheHalo 6s ease-in-out infinite;
+    }
+    .gaze-overlay-active {
+      background: radial-gradient(circle at 50% 30%, #3b0722 0%, #090105 85%) !important;
+    }
+  </style>
+</head>
+<body id="appBody" class="min-h-screen selection:bg-rose-500 selection:text-white transition-colors duration-700">
+
+  <!-- Background Ambient Canvas -->
+  <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-3">
+    <div class="px-5 py-3 rounded-full bg-rose-950/90 border border-rose-400/50 text-rose-100 text-sm font-medium shadow-2xl flex items-center gap-2.5 backdrop-blur-md">
+      <span id="toastEmoji" class="text-lg">💖</span>
+      <span id="toastText">I love you Sakshi!</span>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-rose-950/60 border-b border-rose-500/20">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+      <a href="#heroSection" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-500 to-amber-300 flex items-center justify-center text-lg shadow-lg">👑</span>
+        <div>
+          <span class="font-serif-luxury text-xl font-bold tracking-wide text-rose-100 group-hover:text-amber-200 transition">Meri Doll Sakshi</span>
+          <span class="hidden sm:inline-block ml-2 text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-200">Meri Jaan ❤️</span>
+        </div>
+      </a>
+
+      <nav class="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+        <a href="#loveStudio" class="px-3 py-1.5 rounded-full hover:bg-rose-500/20 text-rose-200 transition">Kisses & Hugs</a>
+        <a href="#memoriesSection" class="px-3 py-1.5 rounded-full hover:bg-rose-500/20 text-rose-200 transition">Our 6 Photos</a>
+        <a href="#careCorner" class="px-3 py-1.5 rounded-full hover:bg-rose-500/20 text-rose-200 transition">Care & Peace</a>
+        <button id="musicToggleBtn" type="button" class="px-3.5 py-1.5 rounded-full bg-rose-500/25 hover:bg-rose-500/40 border border-rose-400/40 text-rose-100 font-medium flex items-center gap-1.5 transition">
+          <span id="musicIcon">🎵</span>
+          <span id="musicLabel">Play Melody</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pb-24 pt-8 space-y-16">
+
+    <!-- HERO SECTION -->
+    <section id="heroSection" class="text-center pt-4 sm:pt-8 space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-xs sm:text-sm text-amber-200 font-medium">
+        <span>✨</span>
+        <span>Dedicated to the girl who makes everything brighter</span>
+        <span>✨</span>
+      </div>
+
+      <h1 class="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-100 via-rose-300 to-amber-200">
+        I Love You So Much, <br class="sm:hidden" />Meri Pyari Sakshi ❤️
+      </h1>
+
+      <p class="font-script text-3xl sm:text-4xl text-rose-300/95">
+        Meri choti si pyari si doll • Meri jaan • Mere dil ka tukda
+      </p>
+
+      <!-- Heartfelt Hinglish Love Note Card -->
+      <div class="max-w-3xl mx-auto glass-card-gold rounded-3xl p-6 sm:p-9 text-left sm:text-center space-y-4 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-36 h-36 bg-rose-500/20 rounded-full blur-2xl pointer-events-none"></div>
+        <p class="text-base sm:text-xl leading-relaxed text-rose-50/95 font-normal">
+          “Aaj mujhe tumpe <span class="text-amber-200 font-semibold">bahut zyada pyaar</span> aa raha hai. Dil kar raha hai tumhe bas <span class="text-rose-300 font-semibold">kisses kari jau</span>, <span class="text-rose-300 font-semibold">jor se hug karu</span>, aur bas tumhare paas baith ke tumhe dekhi jau, tumhe pyaar kari jau.”
+        </p>
+        <p class="text-sm sm:text-lg leading-relaxed text-rose-200/90">
+          Mujhe bahut achi lagti ho tum — <span class="text-amber-200 font-semibold">you are simply the best!</span> Meri choti si pyari si doll ho, meri jaan ho, mere dil ka tukda ho. Dil karta hai bas tumhe hamesha aise hi pyaar hi karta rahu.
+        </p>
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-amber-200/90">
+          <span class="px-3 py-1 rounded-full bg-rose-950/60 border border-amber-300/30">☑ Kind Heart</span>
+          <span class="px-3 py-1 rounded-full bg-rose-950/60 border border-amber-300/30">☑ Crazy Soul</span>
+          <span class="px-3 py-1 rounded-full bg-rose-950/60 border border-amber-300/30">☑ Beautiful Mind</span>
+          <span class="px-3 py-1 rounded-full bg-rose-950/60 border border-amber-300/30">☑ My Favorite Person</span>
+        </div>
+      </div>
+
+      <!-- Live Affection Counters -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-5 max-w-2xl mx-auto pt-2">
+        <div class="glass-card rounded-2xl p-3.5 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl mb-1">💋</div>
+          <div id="kissCountDisplay" class="text-2xl sm:text-3xl font-bold text-rose-200">0</div>
+          <div class="text-xs text-rose-300/80">Kisses Sent Today</div>
+        </div>
+        <div class="glass-card rounded-2xl p-3.5 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl mb-1">🤗</div>
+          <div id="hugCountDisplay" class="text-2xl sm:text-3xl font-bold text-amber-200">0</div>
+          <div class="text-xs text-rose-300/80">Jor Se Tight Hugs</div>
+        </div>
+        <div class="glass-card rounded-2xl p-3.5 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl mb-1">♾️</div>
+          <div id="loveLevelDisplay" class="text-2xl sm:text-3xl font-bold text-rose-200">1000%</div>
+          <div class="text-xs text-rose-300/80">Pyaar Meter</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE PYAAR STUDIO (KISSES, TIGHT HUG & GAZE MODE) -->
+    <section id="loveStudio" class="space-y-6">
+      <div class="text-center space-y-2">
+        <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-rose-100">
+          Interactive Pyaar Overflow Studio 💝
+        </h2>
+        <p class="text-sm sm:text-base text-rose-200/80 max-w-xl mx-auto">
+          Jab tak main saamne baith ke hug aur kiss nahi kar raha, tab tak yahan click karke apna dher saara pyaar feel karo meri doll!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Card 1: Endless Kisses -->
+        <div class="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 border border-rose-400/30 flex items-center justify-center text-2xl">💋</div>
+            <h3 class="font-serif-luxury text-2xl font-bold text-rose-100">Shower Endless Kisses</h3>
+            <p class="text-sm text-rose-200/80 leading-relaxed">
+              “Dil kar raha hai useee kisses kari jau…” Tap as many times as you want for forehead kisses, cheek kisses, and hand kisses!
+            </p>
+          </div>
+          <div class="space-y-3">
+            <div id="kissMessageBanner" class="text-xs text-amber-200 bg-rose-950/60 border border-rose-500/20 rounded-xl px-3.5 py-2.5 min-h-[42px] flex items-center justify-center text-center">
+              Tap below to send your first kiss to Sakshi! 💋
+            </div>
+            <button id="sendKissBtn" type="button" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-400 hover:to-pink-500 active:scale-95 text-white font-semibold shadow-lg transition flex items-center justify-center gap-2 glow-btn">
+              <span>💋</span>
+              <span>Kisses Kari Jau! (+1 Kiss)</span>
+            </button>
+            <button id="kissBurstBtn" type="button" class="w-full py-2 px-4 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 text-rose-200 text-xs font-medium transition">
+              💥 Send 25 Kisses Storm at Once!
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Jor Se Tight Hug Hold Meter -->
+        <div class="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-300/30 flex items-center justify-center text-2xl">🤗</div>
+            <h3 class="font-serif-luxury text-2xl font-bold text-amber-100">Jor Se Tight Hug Meter</h3>
+            <p class="text-sm text-rose-200/80 leading-relaxed">
+              “Jor se hug karoooo…” Press & hold (or tap repeatedly) to wrap Sakshi in the warmest, tightest bear hug!
+            </p>
+          </div>
+          <div class="space-y-3">
+            <div class="w-full bg-rose-950/80 rounded-full h-4 p-0.5 border border-rose-500/30 overflow-hidden">
+              <div id="hugProgressBar" class="bg-gradient-to-r from-rose-400 via-amber-300 to-rose-500 h-full rounded-full transition-all duration-150" style="width: 0%"></div>
+            </div>
+            <div id="hugStatusText" class="text-xs text-center text-amber-200 font-medium">
+              Warmth Level: 0% — Hold button for a tight hug!
+            </div>
+            <button id="tightHugBtn" type="button" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 active:scale-95 text-slate-950 font-bold shadow-lg transition flex items-center justify-center gap-2 select-none">
+              <span>🤗</span>
+              <span>Hold / Tap for Jor Se Hug!</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Bas Paas Baith Ke Dekhi Jau (Gaze Mode) -->
+        <div class="glass-card rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-300/30 flex items-center justify-center text-2xl">👀</div>
+            <h3 class="font-serif-luxury text-2xl font-bold text-rose-100">Bas Paas Baith Ke Dekhu</h3>
+            <p class="text-sm text-rose-200/80 leading-relaxed">
+              “Bas uske paas baith ke usko dekhi jau, usko pyaar kari jau…” Turn on dreamy Gaze Mode and read why I can't take my eyes off you.
+            </p>
+          </div>
+          <div class="space-y-3">
+            <div id="gazeComplimentBox" class="text-xs text-rose-100 bg-rose-950/60 border border-rose-400/25 rounded-xl px-3.5 py-2.5 min-h-[54px] flex items-center justify-center text-center italic">
+              “Tumhari choti si bindi, tumhari pyari si smile, aur tumhari aankhein — sab kuch meri duniya hai.”
+            </div>
+            <button id="nextGazeBtn" type="button" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-purple-600 to-rose-500 hover:from-purple-500 hover:to-rose-400 active:scale-95 text-white font-semibold shadow-lg transition flex items-center justify-center gap-2">
+              <span>✨</span>
+              <span>Niharana (Next Admiration Note)</span>
+            </button>
+            <button id="toggleStarlightBtn" type="button" class="w-full py-2 px-4 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 text-rose-200 text-xs font-medium transition">
+              🌙 Toggle Dreamy Starlight Ambiance
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OUR 6 PRECIOUS MOMENTS GALLERY + PHOTO EMBEDDER -->
+    <section id="memoriesSection" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-amber-300 font-semibold">
+            <span>📸</span>
+            <span>Our Favorite Snapshots</span>
+          </div>
+          <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-rose-100">
+            Meri Pyari Doll Ke 6 Roop ❤️
+          </h2>
+          <p class="text-sm text-rose-200/85 max-w-2xl">
+            Every photo of ours tells a story—from your arms wrapped around my neck to your head resting on my shoulder, your playful hair ruffles, and your brightest birthday smile.
+          </p>
+        </div>
+
+        <!-- Photo Loader & Standalone Export Controls -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <label for="bulkPhotoInput" class="cursor-pointer px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-400 to-rose-400 hover:from-amber-300 hover:to-rose-300 text-slate-950 font-bold text-xs sm:text-sm shadow-lg transition flex items-center gap-2">
+            <span>📸</span>
+            <span>Select Our 6 Photos</span>
+          </label>
+          <input id="bulkPhotoInput" type="file" accept="image/*" multiple class="hidden" />
+
+          <button id="exportStandaloneBtn" type="button" class="px-4 py-2.5 rounded-2xl bg-rose-500/25 hover:bg-rose-500/40 border border-rose-300/40 text-rose-100 font-semibold text-xs sm:text-sm transition flex items-center gap-2">
+            <span>💝</span>
+            <span>Download App for Sakshi</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="text-xs text-amber-200/80 bg-rose-950/50 border border-amber-300/20 rounded-2xl px-4 py-2.5">
+        💡 <strong>Tip:</strong> Tap <strong>“Select Our 6 Photos”</strong> to load all 6 photos at once (or tap any single Polaroid card to change its photo), then tap <strong>“Download App for Sakshi”</strong> to get a single file with your photos permanently embedded inside for WhatsApp!
+      </p>
+
+      <!-- Polaroid Grid (6 Cards matching the 6 uploaded photos) -->
+      <div id="polaroidGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pt-2">
+        <!-- Populated dynamically by JS -->
+      </div>
+      <input id="singlePhotoInput" type="file" accept="image/*" class="hidden" />
+    </section>
+
+    <!-- SECTION 3: "VO BHI MERA BAHUT DHYAN RAKHTI HAI" — STRESS-RELIEF & CARE SANCTUARY -->
+    <section id="careCorner" class="glass-card-gold rounded-3xl p-6 sm:p-10 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-500/20 border border-rose-300/30 text-xs text-amber-200 font-medium">
+          <span>🤍</span>
+          <span>Hamara Dil Ka Connection</span>
+        </div>
+        <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-rose-50">
+          “Vo Bhi Mera Bahut Dhyan Rakhti Hai…”
+        </h2>
+        <p class="text-sm sm:text-base text-rose-100/90 leading-relaxed">
+          Agar main thoda sa bhi stress mein hota hu, toh meri doll bhi turant stress mein aa jati hai. Tum mera itna khayal rakhti ho Sakshi—isliye yeh corner sirf hum dono ke sukoon aur smile ke liye hai.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+        <!-- Calm Breathing & Stress-Melter Box -->
+        <div class="glass-card rounded-3xl p-6 text-center space-y-5">
+          <div class="relative w-32 h-32 mx-auto flex items-center justify-center">
+            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-rose-500/40 to-amber-300/40 breathe-circle"></div>
+            <div class="relative z-10 w-24 h-24 rounded-full bg-rose-950/90 border border-rose-300/40 flex flex-col items-center justify-center p-2">
+              <span class="text-2xl">🌸</span>
+              <span id="breathePrompt" class="text-[11px] font-semibold text-amber-200 mt-1">Deep Breath Together</span>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-serif-luxury text-2xl font-bold text-amber-100">My Promise to My Doll 🤞</h3>
+            <p id="careMessageText" class="text-sm text-rose-100/90 leading-relaxed min-h-[60px]">
+              “Meri jaan, jab tum mere saath ho toh koi tension badi nahi hai. Ab se jab bhi mujhe stress hoga, main sabse pehle tumhe jor se hug karunga taaki hum dono ka stress ek second mein gayab ho jaye!”
+            </p>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-2">
+            <button type="button" data-care="0" class="care-tab-btn px-3.5 py-2 rounded-xl bg-rose-500 text-white text-xs font-semibold transition">
+              🤗 No More Stress Promise
+            </button>
+            <button type="button" data-care="1" class="care-tab-btn px-3.5 py-2 rounded-xl bg-rose-950/70 hover:bg-rose-500/30 border border-rose-400/30 text-rose-200 text-xs font-semibold transition">
+              👑 Thank You for Caring
+            </button>
+            <button type="button" data-care="2" class="care-tab-btn px-3.5 py-2 rounded-xl bg-rose-950/70 hover:bg-rose-500/30 border border-rose-400/30 text-rose-200 text-xs font-semibold transition">
+              💖 Instant Smile Booster
+            </button>
+          </div>
+        </div>
+
+        <!-- Redeemable Love Coupons for Sakshi -->
+        <div class="space-y-3.5">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif-luxury text-2xl font-bold text-rose-100">Sakshi's VIP Love Coupons 🎟️</h3>
+            <span class="text-xs text-amber-200/90">Tap any coupon to redeem!</span>
+          </div>
+          <div id="couponsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: GRAND FINALE — "I LOVE YOU SAKSHI" X 3 -->
+    <section class="glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden">
+      <div class="space-y-2">
+        <p class="font-script text-3xl sm:text-4xl text-amber-200">From the bottom of my heart</p>
+        <h2 class="font-serif-luxury text-3xl sm:text-5xl font-bold text-white leading-tight">
+          I Love You, Sakshi ❤️<br />
+          <span class="text-rose-300">I Love You • I Love You</span>
+        </h2>
+        <p class="text-sm sm:text-base text-rose-200/85 max-w-lg mx-auto pt-1">
+          Keep being you—kind heart, crazy soul, beautiful mind, and forever my favorite person. So lucky to have you, meri pyari doll!
+        </p>
+      </div>
+
+      <div class="pt-2">
+        <button id="grandFinaleBtn" type="button" class="px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-amber-400 hover:from-rose-400 hover:to-amber-300 text-slate-950 font-extrabold text-base sm:text-lg shadow-2xl transition transform hover:scale-105 active:scale-95 glow-btn">
+          💖 Tap for "I Love You Sakshi" Heart Celebration! 💖
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // --- STATE & STORAGE ---
+    const state = {
+      kisses: 0,
+      hugs: 0,
+      hugHoldProgress: 0,
+      gazeIndex: 0,
+      starlightMode: false,
+      musicPlaying: false,
+      activePhotoSlot: 0,
+      redeemedCoupons: {},
+      photos: [null, null, null, null, null, null]
+    };
+
+    try {
+      const saved = localStorage.getItem('sakshi_love_state_v1');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        state.kisses = parsed.kisses || 0;
+        state.hugs = parsed.hugs || 0;
+        state.redeemedCoupons = parsed.redeemedCoupons || {};
+        if (Array.isArray(parsed.photos) && parsed.photos.length === 6) {
+          state.photos = parsed.photos;
+        }
+      }
+    } catch (e) {}
+
+    function saveState() {
+      try {
+        localStorage.setItem('sakshi_love_state_v1', JSON.stringify({
+          kisses: state.kisses,
+          hugs: state.hugs,
+          redeemedCoupons: state.redeemedCoupons,
+          photos: state.photos
+        }));
+      } catch (e) {}
+    }
+
+    // --- 6 MEMORIES METADATA (Tailored to the 6 uploaded photos) ---
+    const memoryCards = [
+      {
+        id: 0,
+        badge: "Memory #1 • Warmest Embrace",
+        title: "Baahein Gale Mein Daal Ke ❤️",
+        caption: "Tumhara laal-gold suit, choti si bindi, aur mere gale mein daali hui baahein—jab tum aise haske gale lagti ho toh lagta hai duniya ki saari khushi mil gayi.",
+        rotation: "-rotate-1",
+        gradient: "from-rose-500/40 via-red-600/30 to-amber-400/30",
+        emojiArt: "👩‍❤️‍👨✨"
+      },
+      {
+        id: 1,
+        badge: "Memory #2 • Pure Sukoon",
+        title: "Mere Kandhe Pe Tumhara Sar 🥰",
+        caption: "Bas aise hi mere paas baith ke mere kandhe pe sar rakhna... tumhari aankhon mein jo pyaar aur sukoon dikhta hai, usko bas dekhta hi rahu.",
+        rotation: "rotate-1",
+        gradient: "from-pink-500/40 via-rose-500/30 to-amber-300/30",
+        emojiArt: "💑🌸"
+      },
+      {
+        id: 2,
+        badge: "Memory #3 • Playful Moments",
+        title: "Mere Baalon Se Khelna 🤭",
+        caption: "Apna chehra dupatte ke peeche chhupa ke mere baalon ko sawarna—tumhari yeh choti-choti pyari si shararatein mujhe tumpe aur fida kar deti hain!",
+        rotation: "-rotate-1",
+        gradient: "from-amber-400/35 via-rose-500/30 to-pink-600/30",
+        emojiArt: "🙈💞"
+      },
+      {
+        id: 3,
+        badge: "Memory #4 • My Cutest Doll",
+        title: "Meri Choti Si Crazy Doll 😍",
+        caption: "Badi-badi aankhein bana ke masti karna! Sach mein meri choti si, pyari si doll ho tum—jiske bina ek pal bhi adhoora lagta hai.",
+        rotation: "rotate-1",
+        gradient: "from-fuchsia-500/35 via-rose-500/30 to-amber-300/30",
+        emojiArt: "👀💖"
+      },
+      {
+        id: 4,
+        badge: "Memory #5 • Shining Together",
+        title: "Mere Dil Ka Tukda ✨",
+        caption: "Silver lehenga aur chamakti earrings mein meri rani! Har party aur har pal mein sabse khoobsurat meri Sakshi hi lagti hai.",
+        rotation: "-rotate-1",
+        gradient: "from-slate-300/35 via-rose-400/30 to-amber-300/35",
+        emojiArt: "👑🥂"
+      },
+      {
+        id: 5,
+        badge: "Memory #6 • My Favorite Person",
+        title: "Kind Heart • Crazy Soul • My Queen 👑",
+        caption: "To the girl who makes everything brighter: Kind heart, crazy soul, beautiful mind, and forever my favorite person. So lucky to have you!",
+        rotation: "rotate-1",
+        gradient: "from-sky-500/35 via-rose-500/35 to-amber-300/35",
+        emojiArt: "🫶👑"
+      }
+    ];
+
+    const kissMessages = [
+      "Ek pyara sa forehead kiss meri choti si doll ke liye! 💋",
+      "Cheeks pe dher saari pappiyan meri jaan ke liye! 😘",
+      "Dil kar raha hai bas kisses hi karta rahu rukne ka naam na lu! ❤️",
+      "Meri Sakshi duniya ki sabse pyari wife hai — 100x more kisses! 💖",
+      "Mere dil ke tukde ke liye ek aur meethi si kiss! 🌹",
+      "Kitni achi lagti ho tum mujhe — I love you so much Sakshi! 🥰"
+    ];
+
+    const gazeCompliments = [
+      "“Tumhari choti si bindi, tumhari pyari si smile, aur tumhari aankhein — sab kuch meri duniya hai.”",
+      "“Bas tumhare paas baith ke tumhe dekhta rahu… mujhe duniya mein isse zyada sukoon kahin nahi milta.”",
+      "“Meri choti si pyari si doll ho tum — jitna dekhu utna hi aur zyada pyaar aata hai.”",
+      "“Tum jab hasti ho na Sakshi, toh mera saara thakan aur saara stress ek pal mein chala jata hai.”",
+      "“Kind heart, crazy soul, beautiful mind — I am so, so lucky to have you as my wife!”"
+    ];
+
+    const careMessages = [
+      "“Meri jaan, jab tum mere saath ho toh koi tension badi nahi hai. Ab se jab bhi mujhe stress hoga, main sabse pehle tumhe jor se hug karunga taaki hum dono ka stress ek second mein gayab ho jaye!”",
+      "“Tum mera kitna dhyan rakhti ho Sakshi… meri choti si pareshani ko bhi apna bana leti ho. Thank you meri zindagi ko itna pyaar aur care dene ke liye.”",
+      "“Abhi ek pyari si smile karo meri doll! Kyunki jab meri Sakshi muskurati hai, toh mera din apne aap best ho jata hai. I love you!”"
+    ];
+
+    const couponsList = [
+      { id: "c1", icon: "🤗", title: "10-Min Tightest Bear Hug", desc: "Redeem anytime for a non-stop 'Jor Se Hug' without letting go!" },
+      { id: "c2", icon: "💋", title: "100 Forehead & Cheek Kisses", desc: "Instant shower of kisses whenever my doll wants extra pampering." },
+      { id: "c3", icon: "☕", title: "Zero-Stress Chai & Cuddle Date", desc: "Phones away, sitting close & just admiring my favorite person." },
+      { id: "c4", icon: "👑", title: "Queen Sakshi's Wish Day", desc: "Your favorite food, your favorite outing, and full princess treatment!" }
+    ];
+
+    // --- WEB AUDIO SYNTHESIZER (No external audio files needed) ---
+    let audioCtx = null;
+    let melodyTimer = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) audioCtx = new AC();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playChime(freq = 587.33, duration = 0.22, type = 'sine') {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.25, ctx.currentTime + duration);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playHeartbeatSound() {
+      playChime(140, 0.14, 'triangle');
+      setTimeout(() => playChime(115, 0.18, 'triangle'), 130);
+    }
+
+    const romanticNotes = [523.25, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33, 698.46, 783.99, 659.25];
+    let noteCursor = 0;
+
+    function toggleMelody() {
+      state.musicPlaying = !state.musicPlaying;
+      const iconEl = document.getElementById('musicIcon');
+      const labelEl = document.getElementById('musicLabel');
+      if (state.musicPlaying) {
+        iconEl.textContent = '🔊';
+        labelEl.textContent = 'Melody On';
+        playChime(659.25, 0.3, 'sine');
+        if (melodyTimer) clearInterval(melodyTimer);
+        melodyTimer = setInterval(() => {
+          if (!state.musicPlaying) return;
+          const note = romanticNotes[noteCursor % romanticNotes.length];
+          noteCursor++;
+          playChime(note, 0.45, 'sine');
+        }, 650);
+        showToast('🎵 Romantic music box melody playing for Sakshi!');
+      } else {
+        iconEl.textContent = '🎵';
+        labelEl.textContent = 'Play Melody';
+        if (melodyTimer) {
+          clearInterval(melodyTimer);
+          melodyTimer = null;
+        }
+      }
+    }
+
+    // --- TOAST & FLOATING PARTICLES ---
+    let toastTimeout = null;
+    function showToast(text, emoji = '💖') {
+      const box = document.getElementById('toastBox');
+      document.getElementById('toastEmoji').textContent = emoji;
+      document.getElementById('toastText').textContent = text;
+      box.classList.remove('opacity-0', '-translate-y-3');
+      box.classList.add('opacity-100', 'translate-y-0');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        box.classList.remove('opacity-100', 'translate-y-0');
+        box.classList.add('opacity-0', '-translate-y-3');
+      }, 2800);
+    }
+
+    function spawnFloatingParticles(emojis = ['💋', '❤️', '💖', '✨'], count = 6) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'floating-particle select-none';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = (10 + Math.random() * 80) + 'vw';
+        el.style.bottom = '-30px';
+        el.style.fontSize = (20 + Math.random() * 22) + 'px';
+        el.style.animationDuration = (2.2 + Math.random() * 1.6) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 3900);
+      }
+    }
+
+    // --- RENDER COUNTERS, POLAROIDS & COUPONS ---
+    function updateCountersUI() {
+      document.getElementById('kissCountDisplay').textContent = state.kisses.toLocaleString();
+      document.getElementById('hugCountDisplay').textContent = state.hugs.toLocaleString();
+      const loveBoost = 1000 + state.kisses * 10 + state.hugs * 50;
+      document.getElementById('loveLevelDisplay').textContent = loveBoost.toLocaleString() + '%';
+    }
+
+    function renderPolaroids() {
+      const grid = document.getElementById('polaroidGrid');
+      grid.innerHTML = memoryCards.map((card, idx) => {
+        const hasPhoto = Boolean(state.photos[idx]);
+        const mediaContent = hasPhoto
+          ? `<img src="${state.photos[idx]}" alt="${card.title}" class="w-full h-72 object-cover rounded-xl shadow-inner" />`
+          : `<div class="w-full h-72 rounded-xl bg-gradient-to-br ${card.gradient} bg-rose-950 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden border border-rose-300/30">
+               <div class="text-5xl mb-3">${card.emojiArt}</div>
+               <div class="text-xs uppercase tracking-widest text-amber-200 font-semibold mb-1">${card.badge}</div>
+               <div class="font-serif-luxury text-xl font-bold text-white">${card.title}</div>
+               <div class="mt-4 px-3.5 py-1.5 rounded-full bg-white/15 text-rose-100 text-xs font-medium backdrop-blur-sm">
+                 📸 Tap to add Photo #${idx + 1}
+               </div>
+             </div>`;
+
+        return `
+          <div class="polaroid-frame rounded-2xl p-4 ${card.rotation} flex flex-col justify-between cursor-pointer" data-slot="${idx}">
+            <div>
+              <div class="relative group overflow-hidden rounded-xl">
+                ${mediaContent}
+                <div class="absolute bottom-2 right-2 bg-rose-950/80 text-rose-100 text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm border border-rose-300/30">
+                  ${hasPhoto ? '🔄 Change Photo' : '📸 Add Photo'}
+                </div>
+              </div>
+              <div class="pt-4 px-1 space-y-1.5">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-rose-700">${card.badge}</div>
+                <h3 class="font-serif-luxury text-2xl font-bold text-rose-950">${card.title}</h3>
+                <p class="text-xs sm:text-sm text-rose-900/90 leading-relaxed">${card.caption}</p>
+              </div>
+            </div>
+            <div class="pt-3 mt-3 border-t border-rose-200 flex items-center justify-between text-xs text-rose-700 font-medium">
+              <span>Meri Pyari Sakshi ❤️</span>
+              <span>Forever & Always</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('[data-slot]').forEach(cardEl => {
+        cardEl.addEventListener('click', () => {
+          state.activePhotoSlot = parseInt(cardEl.getAttribute('data-slot'), 10);
+          document.getElementById('singlePhotoInput').click();
+        });
+      });
+    }
+
+    function renderCoupons() {
+      const container = document.getElementById('couponsContainer');
+      container.innerHTML = couponsList.map(c => {
+        const redeemed = Boolean(state.redeemedCoupons[c.id]);
+        return `
+          <button type="button" data-coupon="${c.id}" class="text-left p-4 rounded-2xl border transition flex flex-col justify-between gap-2 ${
+            redeemed
+              ? 'bg-emerald-950/50 border-emerald-400/50 text-emerald-100'
+              : 'bg-rose-950/60 hover:bg-rose-900/60 border-rose-400/30 text-rose-100'
+          }">
+            <div class="flex items-center justify-between w-full">
+              <span class="text-2xl">${c.icon}</span>
+              <span class="text-[11px] px-2.5 py-0.5 rounded-full font-semibold ${
+                redeemed ? 'bg-emerald-500/30 text-emerald-200' : 'bg-amber-400/20 text-amber-200'
+              }">
+                ${redeemed ? '✓ Redeemed by Doll!' : 'Tap to Redeem'}
+              </span>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-white">${c.title}</div>
+              <div class="text-xs text-rose-200/80 mt-0.5">${c.desc}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      container.querySelectorAll('[data-coupon]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-coupon');
+          state.redeemedCoupons[id] = !state.redeemedCoupons[id];
+          saveState();
+          renderCoupons();
+          playChime(783.99, 0.25, 'sine');
+          if (state.redeemedCoupons[id]) {
+            spawnFloatingParticles(['🎟️', '💖', '🤗', '💋'], 8);
+            showToast('Coupon redeemed! Husband is ready on duty for his Doll ❤️', '🎟️');
+          }
+        });
+      });
+    }
+
+    // --- IMAGE COMPRESSION HELPER (So exported HTML stays crisp & lightweight) ---
+    function fileToDataUrl(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const maxDim = 1000;
+            let w = img.width;
+            let h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) {
+                h = Math.round((h * maxDim) / w);
+                w = maxDim;
+              } else {
+                w = Math.round((w * maxDim) / h);
+                h = maxDim;
+              }
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.85));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // --- INTERACTIVE EVENT LISTENERS ---
+    window.addEventListener('DOMContentLoaded', () => {
+      updateCountersUI();
+      renderPolaroids();
+      renderCoupons();
+
+      // Music Toggle
+      document.getElementById('musicToggleBtn').addEventListener('click', toggleMelody);
+
+      // Endless Kisses Button
+      document.getElementById('sendKissBtn').addEventListener('click', () => {
+        state.kisses += 1;
+        saveState();
+        updateCountersUI();
+        playChime(659.25 + (state.kisses % 5) * 40, 0.18, 'sine');
+        spawnFloatingParticles(['💋', '😘', '❤️', '💖'], 5);
+        const msg = kissMessages[state.kisses % kissMessages.length];
+        document.getElementById('kissMessageBanner').textContent = msg;
+      });
+
+      // 25 Kisses Burst
+      document.getElementById('kissBurstBtn').addEventListener('click', () => {
+        state.kisses += 25;
+        saveState();
+        updateCountersUI();
+        playChime(880, 0.35, 'sine');
+        spawnFloatingParticles(['💋', '😘', '💖', '💝', '🌹'], 22);
+        document.getElementById('kissMessageBanner').textContent = "25 Non-Stop Kisses Storm for Meri Pyari Doll Sakshi! 💋💋💋";
+        showToast('25 Kisses sent to Sakshi! 💋', '😘');
+      });
+
+      // Jor Se Tight Hug Hold / Tap Logic
+      let hugInterval = null;
+      const tightHugBtn = document.getElementById('tightHugBtn');
+      const hugBar = document.getElementById('hugProgressBar');
+      const hugStatus = document.getElementById('hugStatusText');
+
+      function stepHugMeter(amount = 14) {
+        state.hugHoldProgress = Math.min(100, state.hugHoldProgress + amount);
+        hugBar.style.width = state.hugHoldProgress + '%';
+        playHeartbeatSound();
+        if (state.hugHoldProgress >= 100) {
+          state.hugs += 1;
+          state.hugHoldProgress = 0;
+          saveState();
+          updateCountersUI();
+          setTimeout(() => { hugBar.style.width = '0%'; }, 450);
+          hugStatus.textContent = `Jor Se Tight Hug #${state.hugs} Complete! 🤗❤️`;
+          spawnFloatingParticles(['🤗', '❤️', '🥰', '✨'], 14);
+          showToast('Jor se tight hug sent to Meri Jaan Sakshi! 🤗', '🤗');
+        } else {
+          hugStatus.textContent = `Hugging tightly... ${state.hugHoldProgress}% warmth! 🤗`;
+        }
+      }
+
+      tightHugBtn.addEventListener('mousedown', () => {
+        stepHugMeter(20);
+        if (hugInterval) clearInterval(hugInterval);
+        hugInterval = setInterval(() => stepHugMeter(20), 220);
+      });
+      tightHugBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        stepHugMeter(20);
+        if (hugInterval) clearInterval(hugInterval);
+        hugInterval = setInterval(() => stepHugMeter(20), 220);
+      });
+      ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(evt => {
+        tightHugBtn.addEventListener(evt, () => {
+          if (hugInterval) {
+            clearInterval(hugInterval);
+            hugInterval = null;
+          }
+        });
+      });
+
+      // Gaze Mode Compliments & Starlight Toggle
+      document.getElementById('nextGazeBtn').addEventListener('click', () => {
+        state.gazeIndex = (state.gazeIndex + 1) % gazeCompliments.length;
+        document.getElementById('gazeComplimentBox').textContent = gazeCompliments[state.gazeIndex];
+        playChime(587.33, 0.25, 'sine');
+        spawnFloatingParticles(['✨', '👀', '💖', '🌙'], 5);
+      });
+
+      document.getElementById('toggleStarlightBtn').addEventListener('click', () => {
+        state.starlightMode = !state.starlightMode;
+        document.getElementById('appBody').classList.toggle('gaze-overlay-active', state.starlightMode);
+        showToast(state.starlightMode ? '🌙 Starlight Gaze Mode on: Bas tumhe dekhta rahu...' : '✨ Warm Rose Glow restored', '🌙');
+      });
+
+      // Care Corner Tabs
+      document.querySelectorAll('.care-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.getAttribute('data-care'), 10);
+          document.getElementById('careMessageText').textContent = careMessages[idx];
+          document.querySelectorAll('.care-tab-btn').forEach(b => {
+            b.className = 'care-tab-btn px-3.5 py-2 rounded-xl bg-rose-950/70 hover:bg-rose-500/30 border border-rose-400/30 text-rose-200 text-xs font-semibold transition';
+          });
+          btn.className = 'care-tab-btn px-3.5 py-2 rounded-xl bg-rose-500 text-white text-xs font-semibold transition';
+          playChime(659.25, 0.2, 'sine');
+        });
+      });
+
+      // Single Photo Upload
+      document.getElementById('singlePhotoInput').addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const dataUrl = await fileToDataUrl(file);
+        state.photos[state.activePhotoSlot] = dataUrl;
+        saveState();
+        renderPolaroids();
+        showToast(`Photo #${state.activePhotoSlot + 1} added to frame! 📸`, '💖');
+      });
+
+      // Bulk 6 Photos Upload
+      document.getElementById('bulkPhotoInput').addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files || []).slice(0, 6);
+        if (!files.length) return;
+        for (let i = 0; i < files.length; i++) {
+          state.photos[i] = await fileToDataUrl(files[i]);
+        }
+        saveState();
+        renderPolaroids();
+        spawnFloatingParticles(['📸', '❤️', '✨', '👑'], 12);
+        showToast(`Loaded ${files.length} photo(s)! Tap "Download App for Sakshi" to save permanently.`, '📸');
+      });
+
+      // Export Standalone HTML with Embedded Photos for Sakshi
+      document.getElementById('exportStandaloneBtn').addEventListener('click', () => {
+        const currentHtml = document.documentElement.outerHTML;
+        const preloadScript = `\n<script>window.__PRELOADED_PHOTOS__ = ${JSON.stringify(state.photos)};<\/script>\n`;
+        const exportedHtml = '<!DOCTYPE html>\n' + currentHtml.replace(
+          'const state = {',
+          'const state = {\n      photos: window.__PRELOADED_PHOTOS__ || [null, null, null, null, null, null],\n      _skipDefaultPhotos: true,'
+        ).replace(
+          'photos: [null, null, null, null, null, null]',
+          '_unusedPhotos: null'
+        ).replace('</head>', preloadScript + '</head>');
+
+        const blob = new Blob([exportedHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'For_My_Doll_Sakshi.html';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast('💝 Downloaded "For_My_Doll_Sakshi.html" with your photos inside!', '💝');
+      });
+
+      // Grand Finale Celebration
+      document.getElementById('grandFinaleBtn').addEventListener('click', () => {
+        state.kisses += 10;
+        state.hugs += 3;
+        saveState();
+        updateCountersUI();
+        playChime(523.25, 0.2, 'sine');
+        setTimeout(() => playChime(659.25, 0.2, 'sine'), 150);
+        setTimeout(() => playChime(783.99, 0.35, 'sine'), 300);
+        spawnFloatingParticles(['❤️', '💖', '💋', '🤗', '🌹', '👑', '✨'], 32);
+        showToast('I Love You Sakshi! I Love You! I Love You! ❤️', '👑');
+      });
+
+      // Ambient Background Floating Hearts Canvas
+      const canvas = document.getElementById('ambientCanvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      for (let i = 0; i < 28; i++) {
+        particles.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: 1.5 + Math.random() * 2.5,
+          vy: -0.25 - Math.random() * 0.45,
+          vx: (Math.random() - 0.5) * 0.3,
+          alpha: 0.2 + Math.random() * 0.5
+        });
+      }
+
+      function animateAmbient() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.y += p.vy;
+          p.x += p.vx;
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(251, 113, 133, ${p.alpha})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animateAmbient);
+      }
+      animateAmbient();
+    });
+  </script>
+</body>
+</html>
